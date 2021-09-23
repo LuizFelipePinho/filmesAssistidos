@@ -1,8 +1,26 @@
-
+const filmesAtuaisRenderizados = []
 
 const deleta = (id) => {
-    alert('deletando')
+
+    // preciso filtrar a lista de elementos renderizados na tela e devolver todos os elementos diferentes do id passado como parametro e dps mandar renderizar dnv
+    
+    for(let i = 0; i < filmesAtuaisRenderizados.length; i++) {
+        console.log(filmesAtuaisRenderizados[i].id)
+        if(filmesAtuaisRenderizados[i].id === id){
+            filmesAtuaisRenderizados.slice(i, 1)
+            // é pra renderizaaaaaaar
+            render(filmesAtuaisRenderizados)
+
+        }
+
+
+    }
+  
+
 }
+
+const identificadoAleatorio =  () => Math.floor(Math.random() * 1000);
+
 
 
 const botaoEnviar = document.querySelector('.enviar');
@@ -11,35 +29,40 @@ const botaoEnviar = document.querySelector('.enviar');
 
 
 const salvaFilme = (nome, imagem, genero, nota) => {
-    const listaFilme = []
+    const filmeAtual = []
     
     const obj = {
         nome: nome,
         imagem: imagem,
         genero: genero,
         nota: nota,
-        id: listaFilme.length + 1
+        id: identificadoAleatorio()
     }
 
-    listaFilme.push(obj)
-    render(listaFilme)
+
+    filmeAtual.push(obj)
+    filmesAtuaisRenderizados.push(obj)
+    
+    render(filmeAtual)
 
 
 }
 
-const render = (listaFilme) => {
+const render = (filmeAtual) => {
+
+
 
     const container = document.querySelector('.container');
 
     const listItem = document.createElement('div')
 
-    // vai iterar por cada elemento da lista e armazenar o elemento dentro
-    const elemento = listaFilme.map( (elemento) => {
+    // vai iterar pelo elemento da lista e armazenar o elemento dentro
+    const elemento = filmeAtual.map( (elemento) => {
         return `
         <div class="box">
                 <div class="opcoesFilmes">
                     <img class="imgEditar" src="botao-editar.png">
-                    <img class="imgDeletar" src="botao-de-deletar.png" onClick="deleta()">
+                    <img class="imgDeletar" src="botao-de-deletar.png" onClick="deleta(${elemento.id})">
     
                 </div>
                 <p class="titulo-box">${elemento.nome}</p>
@@ -60,35 +83,6 @@ const render = (listaFilme) => {
     container.appendChild(listItem)
 
 
-
-
-   
-
-    // precisa fazer com q o genero e nome fiquem em cima da imagem 
-    // listItem.innerHTML = `
-    
-    // <div class="box">
-    //         <div class="opcoesFilmes">
-    //             <img class="imgEditar" src="botao-editar.png">
-    //             <img class="imgDeletar" src="botao-de-deletar.png" onClick="deleta()">
-
-    //         </div>
-    //         <p class="titulo-box">${nome}</p>
-    //         <img class="imagemBox" src="${imagem}" >
-    //         <div class="infos">
-    //             <p class="infoGenero">${genero}</p>
-    //             <p class="info">
-    //             <img class="estrelaBox estrelaJS" src="estrela.png" >
-    //             ${nota}/10
-    //             </p>
-    
-    //         </div>
-    
-    //     </div
-    
-    // `
-
-    // container.appendChild(listItem)
 }
 
 
@@ -114,5 +108,3 @@ botaoEnviar.addEventListener("click", (evento) => {
 
     
 } )
-
-
