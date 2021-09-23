@@ -48,3 +48,12 @@
     padding: 0.6rem;
 }
 
+.box{
+    height: 12rem;
+    width: 15rem;
+    border: solid black 2px;
+}
+
+.box img {
+    width: 100%;
+}
