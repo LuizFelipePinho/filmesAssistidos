@@ -4,20 +4,14 @@ const deleta = (id) => {
 
     // preciso filtrar a lista de elementos renderizados na tela e devolver todos os elementos diferentes do id passado como parametro e dps mandar renderizar dnv
     
-    for(let i = 0; i < filmesAtuaisRenderizados.length; i++) {
-        console.log(filmesAtuaisRenderizados[i].id)
-        if(filmesAtuaisRenderizados[i].id === id){
-            filmesAtuaisRenderizados.slice(i, 1)
-            // é pra renderizaaaaaaar
-            render(filmesAtuaisRenderizados)
-
-        }
-
-
-    }
-  
+   
+    // console.log(filmesAtuaisRenderizados)
 
 }
+
+// const limpaLista = () => {
+//     const novaLista = 
+// }
 
 const identificadoAleatorio =  () => Math.floor(Math.random() * 1000);
 
@@ -41,24 +35,35 @@ const salvaFilme = (nome, imagem, genero, nota) => {
 
 
     filmeAtual.push(obj)
+
     filmesAtuaisRenderizados.push(obj)
+    // render(filmeAtual)
     
-    render(filmeAtual)
+    // valida se houver algum item renderizado, se tiver ele vai renderizar somente o filme adicionado e se nao renderiza tudo q tiver na lista
+    if(filmesAtuaisRenderizados.length > 0) {
+        render(filmeAtual)
+    } else {
+        render(filmesAtuaisRenderizados)
+
+    }
+
 
 
 }
 
 const render = (filmeAtual) => {
 
-
-
     const container = document.querySelector('.container');
 
-    const listItem = document.createElement('div')
+    // preciso criar uma validação onde se houver algo na tela(na lista) devo apagar tudo e dps rederizar
+
+
+
 
     // vai iterar pelo elemento da lista e armazenar o elemento dentro
     const elemento = filmeAtual.map( (elemento) => {
-        return `
+        console.log(elemento);
+        container.insertAdjacentHTML('beforeend', `
         <div class="box">
                 <div class="opcoesFilmes">
                     <img class="imgEditar" src="botao-editar.png">
@@ -76,16 +81,10 @@ const render = (filmeAtual) => {
                 </div>
             </div
         `
-    })
-
-    // simplesmente injetamos em listItem que é uma div e em seguida injetamos no nó do container
-    listItem.innerHTML = `${elemento}`
-    container.appendChild(listItem)
+        )})
 
 
 }
-
-
 
 
 
