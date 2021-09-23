@@ -1,0 +1,50 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+.cabecalho {
+    border: solid black 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5rem;
+}
+
+
+.formulario {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex: 1;
+}
+
+.formulario form input {
+    width: 100%;
+    padding: 0.4rem;
+    margin: 0.5rem;
+
+}
+
+.tituloAdicionaFilme {
+    text-align: center;
+}
+
+.tituloAdicionaFilme{
+    padding: 1rem;
+}
+
+
+.formulario form {
+    justify-content: center;
+    width: 50%;
+    text-align: center;
+}
+
+.enviar{
+    padding: 0.6rem;
+}
+
