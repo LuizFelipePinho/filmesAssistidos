@@ -42,7 +42,7 @@ const render = (filmeAtual) => {
       if (elemento.deletar == true) {
         const elementoExist = document.querySelector(`[data-key='${elemento.id}']`);
         console.log(elementoExist);
-        elementoExist.remove();
+        // elementoExist.remove();
         return
     } 
 
@@ -92,6 +92,26 @@ const deletar = (id) => {
 
   filmesAtuaisRenderizados[indice].deletar = true;
   render(filmesAtuaisRenderizados);
+
+  // e se eu fizer um map nos elementos ja renderizados e capturar somente os que estao true para delete 
+  // vasculhar na arvore dom determinado elemento que foi clicado
+
+  filmesAtuaisRenderizados.map( (elemento) => {
+    console.log(elemento)
+    const elementoExist = document.querySelector(`[data-key='${elemento.id}']`);
+    console.log(elementoExist);
+
+    filmesAtuaisRenderizados.splice(indice, 1)
+    elementoExist.remove();
+    render(filmesAtuaisRenderizados)
+
+
+
+    
+
+  })
+
+
 
 
 };
