@@ -23,6 +23,8 @@ const salvaFilme = (nome, imagem, genero, nota) => {
   // valida se houver algum item renderizado, se tiver ele vai renderizar somente o filme adicionado e se nao renderiza tudo q tiver na lista
   // joga pra dentro do render
   if (filmesAtuaisRenderizados.length > 0) {
+    // tem que fazer uma validação pra procurar dentro dos filmesRenderizados se o filmeAtual está renderizado, se nao tiver, põe pra renderizar ele, se tiver não renderiza novamente
+
     render(filmeAtual);
   } else {
     render(filmesAtuaisRenderizados);
