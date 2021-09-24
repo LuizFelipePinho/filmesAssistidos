@@ -111,7 +111,7 @@ const deletar = (id) => {
     console.log(filmesAtuaisRenderizados)
     
     elementoExist.remove();
-    render(filmesAtuaisRenderizados)
+    // render(filmesAtuaisRenderizados)
 
 
 
