@@ -39,13 +39,14 @@ const render = (filmeAtual) => {
 
       
       
-      if (elemento.deletar == true) {
-        const elementoExist = document.querySelector(`[data-key='${elemento.id}']`);
-        console.log(elementoExist);
-        // elementoExist.remove();
-        return
-    } 
+    //   if (elemento.deletar == true) {
+    //     const elementoExist = document.querySelector(`[data-key='${elemento.id}']`);
+    //     console.log(elementoExist);
+    //     // elementoExist.remove();
+    //     return
+    // } 
 
+    
 
     container.insertAdjacentHTML(
     "beforeend",
@@ -91,25 +92,36 @@ const deletar = (id) => {
   // e se eu pegar esse elemento alterar ele colocando um target de deletar e na hora de renderizar ele n renderizar esse elemento?
 
   filmesAtuaisRenderizados[indice].deletar = true;
-  render(filmesAtuaisRenderizados);
 
   // e se eu fizer um map nos elementos ja renderizados e capturar somente os que estao true para delete 
   // vasculhar na arvore dom determinado elemento que foi clicado
 
-  filmesAtuaisRenderizados.map( (elemento) => {
-    console.log(elemento)
-    const elementoExist = document.querySelector(`[data-key='${elemento.id}']`);
+//   filmesAtuaisRenderizados.map( (elemento) => {
+//     const elementoExist = document.querySelector(`[data-key='${elemento.id}']`);
+//     console.log(elementoExist);
+
+    // filmesAtuaisRenderizados.splice(indice, 1)
+    // elementoExist.remove();
+    // render(filmesAtuaisRenderizados)
+
+    const elementoExist = document.querySelector(`[data-key='${id}']`);
     console.log(elementoExist);
 
     filmesAtuaisRenderizados.splice(indice, 1)
+    console.log(filmesAtuaisRenderizados)
+    
     elementoExist.remove();
     render(filmesAtuaisRenderizados)
 
 
 
+
     
 
-  })
+
+    
+
+//   })
 
 
 
