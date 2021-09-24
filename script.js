@@ -1,17 +1,27 @@
-const filmesAtuaisRenderizados = []
+let filmesAtuaisRenderizados = []
 
 const deleta = (id) => {
-
-    // preciso filtrar a lista de elementos renderizados na tela e devolver todos os elementos diferentes do id passado como parametro e dps mandar renderizar dnv
     
-   
-    // console.log(filmesAtuaisRenderizados)
+ // vamos fazer uma logica que tire o elemento a partir do id recebido da lista de filmesAtuaisRenderizados
+    const indiceElemento = () => {
+        for(let i = 0; i < filmesAtuaisRenderizados.length; i++ ){
+            if(filmesAtuaisRenderizados[i].id == id) {
+                return i
+            }
+        }
+    }
+
+    const indice = indiceElemento()
+    
+    filmesAtuaisRenderizados.splice(indice, 1)
+    
+    console.log(filmesAtuaisRenderizados)
+    render(filmesAtuaisRenderizados)
+
+
+  
 
 }
-
-// const limpaLista = () => {
-//     const novaLista = 
-// }
 
 const identificadoAleatorio =  () => Math.floor(Math.random() * 1000);
 
@@ -23,7 +33,7 @@ const botaoEnviar = document.querySelector('.enviar');
 
 
 const salvaFilme = (nome, imagem, genero, nota) => {
-    const filmeAtual = []
+    const filmeAtual = [] 
     
     const obj = {
         nome: nome,
@@ -40,6 +50,7 @@ const salvaFilme = (nome, imagem, genero, nota) => {
     // render(filmeAtual)
     
     // valida se houver algum item renderizado, se tiver ele vai renderizar somente o filme adicionado e se nao renderiza tudo q tiver na lista
+    // joga pra dentro do render
     if(filmesAtuaisRenderizados.length > 0) {
         render(filmeAtual)
     } else {
@@ -54,10 +65,6 @@ const salvaFilme = (nome, imagem, genero, nota) => {
 const render = (filmeAtual) => {
 
     const container = document.querySelector('.container');
-
-    // preciso criar uma validação onde se houver algo na tela(na lista) devo apagar tudo e dps rederizar
-
-
 
 
     // vai iterar pelo elemento da lista e armazenar o elemento dentro
