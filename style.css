@@ -1,123 +1,122 @@
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color:  #f0f2f3;
 }
 
 .cabecalho {
-    border: solid black 2px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5rem;
+  background-color: #34495e;
+  color: white;
+
 }
 
-
 .formulario {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex: 1;
 }
 
 .formulario form input {
-    width: 100%;
-    padding: 0.4rem;
-    margin: 0.5rem;
-
+  width: 100%;
+  padding: 0.4rem;
+  margin: 0.5rem;
 }
 
 .tituloAdicionaFilme {
-    text-align: center;
+  text-align: center;
 }
 
-.tituloAdicionaFilme{
-    padding: 1rem;
+.tituloAdicionaFilme {
+  padding: 1rem;
 }
-
 
 .formulario form {
-    justify-content: center;
-    width: 50%;
-    text-align: center;
+  justify-content: center;
+  width: 50%;
+  text-align: center;
 }
 
-.enviar{
-    padding: 0.6rem;
+.enviar {
+  padding: 0.6rem;
 }
 
-.container{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    border: solid black 2px;
-    justify-content: space-around;
-    padding: 0rem 10rem 3rem 10rem;
-
+.container-infos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.box{
-   width: 15rem;
-   border: solid black 2px;
-   display: flex;
-   flex-direction: column;
-    align-items: center;
-    margin-top: 3rem 
-    
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 70%;
+  justify-content: space-around;
 }
 
-.opcoesFilmes{
-    display: flex;
-    padding: 0.5rem 0 0.5rem 0 ;
-    width: 100%;
-    justify-content: space-around;
-    align-items: center;
-    
+.box {
+  width: 15rem;
+  border: solid black 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+}
 
-
+.opcoesFilmes {
+  display: flex;
+  padding: 0.5rem 0 0.5rem 0;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .opcoesFilmes div {
-    padding: 0.5rem;
-
+  padding: 0.5rem;
 }
 
-.imgEditar, .imgDeletar{
-    height: 1.5rem;
+.imgEditar,
+.imgDeletar {
+  height: 1.5rem;
 }
-.titulo-box{
-    padding: 0.6rem;
-}
-
-.infos{
-    display: flex;
-    width: 100%;
-    margin-top: 1rem;
-    justify-content: space-around;
+.titulo-box {
+  padding: 0.6rem;
 }
 
-.infoGenero{
-    font-size: 1.2rem;
-
+.infos {
+  display: flex;
+  width: 100%;
+  margin-top: 1rem;
+  justify-content: space-around;
 }
 
-.estrelaBox{
-    height: 0.8rem;
+.infoGenero {
+  font-size: 1.2rem;
 }
 
-
-.info{
-    border-radius: 10%;
-    padding: 0.3rem 1.2rem 0.3rem 1.2rem;
+.estrelaBox {
+  height: 0.8rem;
 }
 
-.imagemBox{
-    width: 13rem;
-    height: 12rem;
+.info {
+  border-radius: 10%;
+  padding: 0.3rem 1.2rem 0.3rem 1.2rem;
+}
+
+.imagemBox {
+  width: 13rem;
+  height: 12rem;
 }

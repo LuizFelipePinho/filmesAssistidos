@@ -19,7 +19,6 @@ const salvaFilme = (nome, imagem, genero, nota) => {
   filmeAtual.push(obj);
 
   filmesAtuaisRenderizados.push(obj);
-  // render(filmeAtual)
 
   // valida se houver algum item renderizado, se tiver ele vai renderizar somente o filme adicionado e se nao renderiza tudo q tiver na lista
   // joga pra dentro do render
@@ -35,22 +34,9 @@ const render = (filmeAtual) => {
 
   // vai iterar pelo elemento da lista e armazenar o elemento dentro
   const elemento = filmeAtual.map((elemento) => {
-   
-
-      
-      
-    //   if (elemento.deletar == true) {
-    //     const elementoExist = document.querySelector(`[data-key='${elemento.id}']`);
-    //     console.log(elementoExist);
-    //     // elementoExist.remove();
-    //     return
-    // } 
-
-    
-
     container.insertAdjacentHTML(
-    "beforeend",
-    `
+      "beforeend",
+      `
         <div class="box" data-key="${elemento.id}">
                 <div class="opcoesFilmes">
                     <img class="imgEditar" src="botao-editar.png">
@@ -84,48 +70,15 @@ const deletar = (id) => {
 
   const indice = indiceElemento();
 
-  //    filmesAtuaisRenderizados.splice(indice, 1)
-
-  //    console.log(filmesAtuaisRenderizados == true)
-  //    render(filmesAtuaisRenderizados)
-
-  // e se eu pegar esse elemento alterar ele colocando um target de deletar e na hora de renderizar ele n renderizar esse elemento?
-
   filmesAtuaisRenderizados[indice].deletar = true;
 
-  // e se eu fizer um map nos elementos ja renderizados e capturar somente os que estao true para delete 
-  // vasculhar na arvore dom determinado elemento que foi clicado
+  const elementoExist = document.querySelector(`[data-key='${id}']`);
+  console.log(elementoExist);
 
-//   filmesAtuaisRenderizados.map( (elemento) => {
-//     const elementoExist = document.querySelector(`[data-key='${elemento.id}']`);
-//     console.log(elementoExist);
+  filmesAtuaisRenderizados.splice(indice, 1);
+  console.log(filmesAtuaisRenderizados);
 
-    // filmesAtuaisRenderizados.splice(indice, 1)
-    // elementoExist.remove();
-    // render(filmesAtuaisRenderizados)
-
-    const elementoExist = document.querySelector(`[data-key='${id}']`);
-    console.log(elementoExist);
-
-    filmesAtuaisRenderizados.splice(indice, 1)
-    console.log(filmesAtuaisRenderizados)
-    
-    elementoExist.remove();
-    // render(filmesAtuaisRenderizados)
-
-
-
-
-    
-
-
-    
-
-//   })
-
-
-
-
+  elementoExist.remove();
 };
 
 botaoEnviar.addEventListener("click", (evento) => {
