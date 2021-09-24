@@ -120,3 +120,13 @@ body {
   width: 13rem;
   height: 12rem;
 }
+
+
+.footer {
+    height: 5rem;
+    width: 100%;
+  background-color: #34495e;
+    border: solid black 2px;
+    position: fixed;
+    bottom: 0;
+}
