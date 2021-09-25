@@ -32,6 +32,7 @@ const salvaFilme = (nome, imagem, genero, nota) => {
 };
 
 const render = (filmeAtual) => {
+  addToLocalStorage()
   const container = document.querySelector(".container");
 
   // vai iterar pelo elemento da lista e armazenar o elemento dentro
@@ -100,3 +101,23 @@ botaoEnviar.addEventListener("click", (evento) => {
 
   salvaFilme(nome, imagem, genero, nota);
 });
+
+
+// salva no localStorage toda vez que algum elemento for renderizado, por isso q chamei ela na função render
+const addToLocalStorage = () => {
+  localStorage.setItem('filmes', JSON.stringify(filmesAtuaisRenderizados))
+}
+
+const renderListStorege = () => {
+  const listFilmeStorege = localStorage.getItem('filmes')
+
+
+  if(listFilmeStorege.length > 0) {
+    todosFilmes = JSON.parse(listFilmeStorege);
+    console.log(todosFilmes)
+    render(todosFilmes)
+
+  }
+}
+
+renderListStorege()
