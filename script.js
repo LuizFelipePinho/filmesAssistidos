@@ -1,7 +1,10 @@
+// local onde fica armazenado todos os filmes que vão ser renderizados na tela
 let filmesAtuaisRenderizados = [];
 
+// cria um id aletorio de 1 a 1000
 const identificadoAleatorio = () => Math.floor(Math.random() * 1000);
 
+//verifica se os input do usuario estão vazios
 const verificaVazio = (obj) => {
   if (!obj.nome || !obj.imagem || !obj.genero || !obj.nota) {
     return true;
@@ -10,6 +13,7 @@ const verificaVazio = (obj) => {
   }
 };
 
+// vai pesquisar dentro da lista de filmes renderizados se o filme q esta sendo adicionado existe
 const verificaRepetido = (filmes, obj) => {
   if (!filmes) {
     return false;
@@ -29,8 +33,7 @@ const verificaRepetido = (filmes, obj) => {
   }
 };
 
-const botaoEnviar = document.querySelector(".enviar");
-
+// pega o filme que foi digitado e molda em forma de objeto
 const salvaFilme = (nome, imagem, genero, nota) => {
   const filmeAtual = [];
 
@@ -68,6 +71,7 @@ const salvaFilme = (nome, imagem, genero, nota) => {
   }
 };
 
+// renderiza na tela à partir de uma lista de objetos
 const render = (filmeAtual) => {
   addToLocalStorage();
   const container = document.querySelector(".container");
@@ -78,26 +82,27 @@ const render = (filmeAtual) => {
       "beforeend",
       `
         <div class="box" data-key="${elemento.id}">
-                <div class="opcoesFilmes">
-                    <img class="imgEditar" src="botao-editar.png">
-                    <img class="imgDeletar" src="botao-de-deletar.png" onClick="deletar(${elemento.id})">
-    
-                </div>
-                <p class="titulo-box">${elemento.nome}</p>
-                <img class="imagemBox" src="${elemento.imagem}" >
-                <div class="infos">
-                    <p class="infoGenero">${elemento.genero}</p>
-                    <p class="info">
-                    <img class="estrelaBox estrelaJS" src="estrela.png" >
-                    ${elemento.nota}/10
-                    </p>
-                </div>
-            </div
+        <div class="opcoesFilmes">
+        <img class="imgEditar" src="botao-editar.png">
+        <img class="imgDeletar" src="botao-de-deletar.png" onClick="deletar(${elemento.id})">
+        
+        </div>
+        <p class="titulo-box">${elemento.nome}</p>
+        <img class="imagemBox" src="${elemento.imagem}" >
+        <div class="infos">
+        <p class="infoGenero">${elemento.genero}</p>
+        <p class="info">
+        <img class="estrelaBox estrelaJS" src="estrela.png" >
+        ${elemento.nota}/10
+        </p>
+        </div>
+        </div
         `
     );
   });
 };
 
+//deleta um elemento da tela e da lista de elementos rendeziados
 const deletar = (id) => {
   // vamos fazer uma logica que tire o elemento a partir do id recebido da lista de filmesAtuaisRenderizados
   const indiceElemento = () => {
@@ -113,15 +118,29 @@ const deletar = (id) => {
   filmesAtuaisRenderizados[indice].deletar = true;
 
   const elementoExist = document.querySelector(`[data-key='${id}']`);
-  console.log(elementoExist);
 
   filmesAtuaisRenderizados.splice(indice, 1);
-  console.log(filmesAtuaisRenderizados);
 
   elementoExist.remove();
-  addToLocalStorage()
-
+  addToLocalStorage();
 };
+
+// salva no localStorage todos os elementos que tiverem sido renderizados
+const addToLocalStorage = () => {
+  localStorage.setItem("filmes", JSON.stringify(filmesAtuaisRenderizados));
+};
+
+// quando inicia a pagina ele verifica se tem algo e se tiver renderiza ele na tela
+const renderListStorege = () => {
+  const listFilmeStorege = localStorage.getItem("filmes");
+
+  if (listFilmeStorege.length > 0) {
+    todosFilmes = JSON.parse(listFilmeStorege);
+    render(todosFilmes);
+  }
+};
+
+const botaoEnviar = document.querySelector(".enviar");
 
 botaoEnviar.addEventListener("click", (evento) => {
   evento.preventDefault();
@@ -140,19 +159,5 @@ botaoEnviar.addEventListener("click", (evento) => {
 
   salvaFilme(nome, imagem, genero, nota);
 });
-
-// salva no localStorage toda vez que algum elemento for renderizado, por isso q chamei ela na função render
-const addToLocalStorage = () => {
-  localStorage.setItem("filmes", JSON.stringify(filmesAtuaisRenderizados));
-};
-
-const renderListStorege = () => {
-  const listFilmeStorege = localStorage.getItem("filmes");
-
-  if (listFilmeStorege.length > 0) {
-    todosFilmes = JSON.parse(listFilmeStorege);
-    render(todosFilmes);
-  }
-};
 
 renderListStorege();
