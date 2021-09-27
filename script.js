@@ -2,6 +2,25 @@ let filmesAtuaisRenderizados = [];
 
 const identificadoAleatorio = () => Math.floor(Math.random() * 1000);
 
+const verificaRepetido = (filmes, obj) => {
+
+  if(!filmes) {
+    return false
+  } else {
+    for( let i = 0; i < filmes.length; i++){
+      if(filmes[i].nome == obj.nome && filmes[i].imagem == obj.imagem && filmes[i].genero == obj.genero && filmes[i].nota == obj.nota) {
+        return true
+      } else {
+        return false
+      }
+    }
+
+  }
+
+  
+
+}
+
 const botaoEnviar = document.querySelector(".enviar");
 
 const salvaFilme = (nome, imagem, genero, nota) => {
@@ -16,15 +35,36 @@ const salvaFilme = (nome, imagem, genero, nota) => {
     deletar: false,
   };
 
+
+  const resultProcura = filmesAtuaisRenderizados.map( (filme) => {
+    if(filme.nome == obj.nome && filme.imagem == obj.imagem && filme.genero == obj.genero && filme.nota == obj.nota) {
+      return true
+    }else {
+      false
+    }
+  })
+
+  
+
+  
   // fazer uma validação, se ele passar algum elemento vazio nao partir que ele seja salvo na lista que vai renderizar dps
-  if(!obj.nome || !obj.imagem || !obj.genero || !obj.nota){
-    alert("Preencha corretamente todas as lacunas!")
+  const resultVerificaRepetido =   verificaRepetido(filmesAtuaisRenderizados, obj)
+
+  if(!obj.nome || !obj.imagem || !obj.genero || !obj.nota  || resultVerificaRepetido ){
+    alert("Preencha todas as informações e não repita filmes!")
   } else {
+    
+    // tenho q validar caso o filme atual já exista entao nao pode adicionar novamente dentro de filmesAtiaosRenderizados
+    
+  
+   
+   
     filmeAtual.push(obj);
 
     filmesAtuaisRenderizados.push(obj);
 
   }
+
 
 
 
@@ -123,7 +163,6 @@ const renderListStorege = () => {
 
   if(listFilmeStorege.length > 0) {
     todosFilmes = JSON.parse(listFilmeStorege);
-    console.log(todosFilmes)
     render(todosFilmes)
 
   }
