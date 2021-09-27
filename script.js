@@ -2,24 +2,32 @@ let filmesAtuaisRenderizados = [];
 
 const identificadoAleatorio = () => Math.floor(Math.random() * 1000);
 
-const verificaRepetido = (filmes, obj) => {
-
-  if(!filmes) {
-    return false
+const verificaVazio = (obj) => {
+  if (!obj.nome || !obj.imagem || !obj.genero || !obj.nota) {
+    return true;
   } else {
-    for( let i = 0; i < filmes.length; i++){
-      if(filmes[i].nome == obj.nome && filmes[i].imagem == obj.imagem && filmes[i].genero == obj.genero && filmes[i].nota == obj.nota) {
-        return true
+    return false;
+  }
+};
+
+const verificaRepetido = (filmes, obj) => {
+  if (!filmes) {
+    return false;
+  } else {
+    for (let i = 0; i < filmes.length; i++) {
+      if (
+        filmes[i].nome == obj.nome &&
+        filmes[i].imagem == obj.imagem &&
+        filmes[i].genero == obj.genero &&
+        filmes[i].nota == obj.nota
+      ) {
+        return true;
       } else {
-        return false
+        return false;
       }
     }
-
   }
-
-  
-
-}
+};
 
 const botaoEnviar = document.querySelector(".enviar");
 
@@ -35,39 +43,19 @@ const salvaFilme = (nome, imagem, genero, nota) => {
     deletar: false,
   };
 
-
-  const resultProcura = filmesAtuaisRenderizados.map( (filme) => {
-    if(filme.nome == obj.nome && filme.imagem == obj.imagem && filme.genero == obj.genero && filme.nota == obj.nota) {
-      return true
-    }else {
-      false
-    }
-  })
-
-  
-
-  
   // fazer uma validação, se ele passar algum elemento vazio nao partir que ele seja salvo na lista que vai renderizar dps
-  const resultVerificaRepetido =   verificaRepetido(filmesAtuaisRenderizados, obj)
+  const resultVerificaRepetido = verificaRepetido(
+    filmesAtuaisRenderizados,
+    obj
+  );
 
-  if(!obj.nome || !obj.imagem || !obj.genero || !obj.nota  || resultVerificaRepetido ){
-    alert("Preencha todas as informações e não repita filmes!")
+  if (verificaVazio(obj) || resultVerificaRepetido) {
+    alert("Preencha todas as informações e não repita filmes!");
   } else {
-    
-    // tenho q validar caso o filme atual já exista entao nao pode adicionar novamente dentro de filmesAtiaosRenderizados
-    
-  
-   
-   
     filmeAtual.push(obj);
 
     filmesAtuaisRenderizados.push(obj);
-
   }
-
-
-
-
 
   // valida se houver algum item renderizado, se tiver ele vai renderizar somente o filme adicionado e se nao renderiza tudo q tiver na lista
   // joga pra dentro do render
@@ -81,7 +69,7 @@ const salvaFilme = (nome, imagem, genero, nota) => {
 };
 
 const render = (filmeAtual) => {
-  addToLocalStorage()
+  addToLocalStorage();
   const container = document.querySelector(".container");
 
   // vai iterar pelo elemento da lista e armazenar o elemento dentro
@@ -151,21 +139,18 @@ botaoEnviar.addEventListener("click", (evento) => {
   salvaFilme(nome, imagem, genero, nota);
 });
 
-
 // salva no localStorage toda vez que algum elemento for renderizado, por isso q chamei ela na função render
 const addToLocalStorage = () => {
-  localStorage.setItem('filmes', JSON.stringify(filmesAtuaisRenderizados))
-}
+  localStorage.setItem("filmes", JSON.stringify(filmesAtuaisRenderizados));
+};
 
 const renderListStorege = () => {
-  const listFilmeStorege = localStorage.getItem('filmes')
+  const listFilmeStorege = localStorage.getItem("filmes");
 
-
-  if(listFilmeStorege.length > 0) {
+  if (listFilmeStorege.length > 0) {
     todosFilmes = JSON.parse(listFilmeStorege);
-    render(todosFilmes)
-
+    render(todosFilmes);
   }
-}
+};
 
-renderListStorege()
+renderListStorege();
