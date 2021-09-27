@@ -16,9 +16,18 @@ const salvaFilme = (nome, imagem, genero, nota) => {
     deletar: false,
   };
 
-  filmeAtual.push(obj);
+  // fazer uma validação, se ele passar algum elemento vazio nao partir que ele seja salvo na lista que vai renderizar dps
+  if(!obj.nome || !obj.imagem || !obj.genero || !obj.nota){
+    alert("Preencha corretamente todas as lacunas!")
+  } else {
+    filmeAtual.push(obj);
 
-  filmesAtuaisRenderizados.push(obj);
+    filmesAtuaisRenderizados.push(obj);
+
+  }
+
+
+
 
   // valida se houver algum item renderizado, se tiver ele vai renderizar somente o filme adicionado e se nao renderiza tudo q tiver na lista
   // joga pra dentro do render
