@@ -119,6 +119,8 @@ const deletar = (id) => {
   console.log(filmesAtuaisRenderizados);
 
   elementoExist.remove();
+  addToLocalStorage()
+
 };
 
 botaoEnviar.addEventListener("click", (evento) => {
